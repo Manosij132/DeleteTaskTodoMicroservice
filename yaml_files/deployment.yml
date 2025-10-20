@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: deletetasktodo
-        image: manoacr616312.azurecr.io/deletetasktodo:v1
+        image: manoacr616312.azurecr.io/deletetasktodo:v2
         ports:
         - containerPort: 80
