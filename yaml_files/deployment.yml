@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deletetasktododeployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: deletetasktodo
+  template:
+    metadata:
+      labels:
+        app: deletetasktodo
+    spec:
+      containers:
+      - name: deletetasktodo
+        image: manoacr616312.azurecr.io/deletetasktodo:v1
+        ports:
+        - containerPort: 80
