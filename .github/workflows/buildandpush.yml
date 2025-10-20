@@ -1,0 +1,40 @@
+name: build and push deletetask
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read      
+
+jobs:
+  build-tag-push:
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+
+      - name: Azure Login
+        uses: Azure/login@v2.3.0
+        with:
+          client-id: d4bc3dd5-ac8c-43a2-bb54-79e0a1f7d8ed
+          tenant-id: 81c83f06-4c13-4757-9b94-36ce6d08c87a
+          subscription-id: 90ba3f99-29ea-4a71-8106-8a6775ca9f61
+
+      - name: Image Build
+        run: docker build -t deletetasktodo:v1 .
+
+      - name: ACR login
+        run: az acr login --name manoacr616312
+
+      - name: Image Tag
+        run: docker tag deletetasktodo:v1 manoacr616312.azurecr.io/deletetasktodo:v1
+        
+      - name: ACR Push
+        run: docker push manoacr616312.azurecr.io/deletetasktodo:v1
+      
+
+  
