@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v5.0.0
 
       - name: Azure Login
-        uses: Azure/login@v3.3.0
+        uses: Azure/login@v2.3.0
         with:
           client-id: acb3d991-a6f1-4d2a-adae-cf23331bcdfa
           tenant-id: ce2f68bd-57d5-44f2-ab38-0c7ced51b46b
